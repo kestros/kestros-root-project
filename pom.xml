@@ -15,4 +15,23 @@
     building and installing Bundles and Packages to Sling instances.
   </description>
 
+  <packaging>pom</packaging>
+
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <inceptionYear>2019</inceptionYear>
+
+  <organization>
+    <name>Kestros</name>
+    <url>https://www.kestros.io</url>
+  </organization>
+
+  <url>https://www.kestros.io</url>
+
 </project>
