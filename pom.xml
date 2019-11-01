@@ -372,7 +372,7 @@ under the License.
             </execution>
           </executions>
           <configuration>
-            <serviceURL>${protocol}://${sling.host}:${sling.port}/bin/cpm/package.service.html
+            <serviceURL>${sling.protocol}://${sling.host}:${sling.port}/bin/cpm/package.service.html
             </serviceURL>
             <userId>${sling.username}</userId>
             <password>${sling.password}</password>
