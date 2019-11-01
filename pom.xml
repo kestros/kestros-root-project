@@ -11,7 +11,8 @@
   <version>0.0.1-SNAPSHOT</version>
 
   <name>Kestros Root Project</name>
-  <description>Base Sling project build manager. Contains dependency and plugin versions for
+  <description>
+    Base Sling project build manager. Contains dependency and plugin versions for
     building and installing Bundles and Packages to Sling instances.
   </description>
 
@@ -34,4 +35,501 @@
 
   <url>https://www.kestros.io</url>
 
+
+  <dependencyManagement>
+    <dependencies>
+
+      <!-- javax Dependencies -->
+      <dependency>
+        <groupId>javax.annotation</groupId>
+        <artifactId>javax.annotation-api</artifactId>
+        <version>1.2</version>
+      </dependency>
+
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>servlet-api</artifactId>
+        <version>2.5</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <!-- OSGi Dependencies -->
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>org.osgi.core</artifactId>
+        <version>6.0.0</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>osgi.cmpn</artifactId>
+        <version>6.0.0</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>osgi.annotation</artifactId>
+        <version>7.0.0</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <!-- Sling Dependencies -->
+      <dependency>
+        <groupId>org.apache.sling</groupId>
+        <artifactId>org.apache.sling.models.api</artifactId>
+        <version>1.3.6</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.sling</groupId>
+        <artifactId>org.apache.sling.models.impl</artifactId>
+        <version>1.4.10</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.sling</groupId>
+        <artifactId>org.apache.sling.servlets.annotations</artifactId>
+        <version>1.2.4</version>
+      </dependency>
+
+      <!-- Jackson Dependencies -->
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-core</artifactId>
+        <version>2.9.7</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>2.9.7</version>
+      </dependency>
+
+      <!-- Testing Dependencies -->
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.12</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-core</artifactId>
+        <version>2.23.0</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.sling</groupId>
+        <artifactId>org.apache.sling.testing.sling-mock.junit4</artifactId>
+        <version>2.3.10</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.sling</groupId>
+        <artifactId>org.apache.sling.testing.sling-mock-oak</artifactId>
+        <version>2.1.0</version>
+      </dependency>
+
+      <!-- Findbug Annotations -->
+      <dependency>
+        <groupId>com.google.code.findbugs</groupId>
+        <artifactId>annotations</artifactId>
+        <version>3.0.0</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <!-- Logging -->
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>1.7.25</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.sling</groupId>
+        <artifactId>org.apache.sling.commons.log</artifactId>
+        <version>5.0.0</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+
+        <!-- Maven Enforcer -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <version>3.0.0-M2</version>
+          <executions>
+            <execution>
+              <id>enforce-property-values</id>
+              <goals>
+                <goal>enforce</goal>
+              </goals>
+              <configuration>
+                <rules>
+                  <requireProperty>
+                    <property>sling.java.version</property>
+                    <regex>^(8|9|1[0-9])$</regex>
+                    <regexMessage>
+                      The value of the "sling.java.version" property should comply with the
+                      following pattern: ^(8|9|1[0-9])$.
+                    </regexMessage>
+                  </requireProperty>
+                </rules>
+              </configuration>
+            </execution>
+            <execution>
+              <id>enforce-java-version</id>
+              <goals>
+                <goal>enforce</goal>
+              </goals>
+              <configuration>
+                <rules>
+                  <requireJavaVersion>
+                    <version>1.8.0</version>
+                    <message>Apache Sling must be compiled with Java 8 or higher.</message>
+                  </requireJavaVersion>
+                </rules>
+              </configuration>
+            </execution>
+            <execution>
+              <id>enforce-maven-version</id>
+              <goals>
+                <goal>enforce</goal>
+              </goals>
+              <configuration>
+                <rules>
+                  <requireMavenVersion>
+                    <version>3.3.9</version>
+                  </requireMavenVersion>
+                </rules>
+              </configuration>
+            </execution>
+            <execution>
+              <id>ban-maven-scr-plugin</id>
+              <goals>
+                <goal>enforce</goal>
+              </goals>
+              <configuration>
+                <rules>
+                  <bannedPlugins>
+                    <excludes>
+                      <exclude>org.apache.felix:maven-scr-plugin</exclude>
+                    </excludes>
+                    <message>Felix SCR annotations and the maven-scr-plugin are no longer supported
+                      - please migrate to OSGi.
+                    </message>
+                  </bannedPlugins>
+                </rules>
+              </configuration>
+            </execution>
+            <execution>
+              <id>ban-felix-scr-annotations</id>
+              <goals>
+                <goal>enforce</goal>
+              </goals>
+              <configuration>
+                <rules>
+                  <bannedDependencies>
+                    <excludes>
+                      <exclude>org.apache.felix:org.apache.felix.scr.annotations</exclude>
+                    </excludes>
+                    <message>Felix SCR annotations and the maven-scr-plugin are no longer supported
+                      - please migrate to OSGi.
+                    </message>
+                  </bannedDependencies>
+                </rules>
+              </configuration>
+            </execution>
+            <execution>
+              <id>ban-maven-sling-plugin</id>
+              <goals>
+                <goal>enforce</goal>
+              </goals>
+              <configuration>
+                <rules>
+                  <bannedPlugins>
+                    <excludes>
+                      <exclude>org.apache.sling:maven-sling-plugin</exclude>
+                    </excludes>
+                    <message>Please change all occurences of maven-sling-plugin to
+                      sling-maven-plugin (plugin was renamed).
+                    </message>
+                  </bannedPlugins>
+                </rules>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+
+        <!-- Maven Source -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>3.1.0</version>
+          <inherited>true</inherited>
+          <executions>
+            <execution>
+              <id>attach-sources</id>
+              <goals>
+                <goal>jar</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
+        <!-- Maven Compiler -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>1.8</source>
+            <target>1.8</target>
+            <compilerArgument>-Xlint:unchecked</compilerArgument>
+            <failOnError>true</failOnError>
+            <failOnWarning>false</failOnWarning>
+          </configuration>
+        </plugin>
+
+        <!-- Maven Bundle Plugin -->
+        <plugin>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>maven-bundle-plugin</artifactId>
+          <version>4.1.0</version>
+        </plugin>
+
+        <!-- Mutation Testing -->
+        <plugin>
+          <groupId>org.pitest</groupId>
+          <artifactId>pitest-maven</artifactId>
+          <version>1.4.3</version>
+        </plugin>
+
+        <!-- FileVault Content Package Plugin -->
+        <plugin>
+          <groupId>org.apache.jackrabbit</groupId>
+          <artifactId>filevault-package-maven-plugin</artifactId>
+          <version>1.0.3</version>
+          <extensions>true</extensions>
+          <executions>
+            <execution>
+              <goals>
+                <goal>generate-metadata</goal>
+                <goal>package</goal>
+                <goal>analyze-classes</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <packageType>mixed</packageType>
+            <failOnMissingEmbed>true</failOnMissingEmbed>
+            <filterSource>src/content/META-INF/vault/filter.xml</filterSource>
+          </configuration>
+        </plugin>
+
+        <!-- Content Package Install Plugin -->
+        <plugin>
+          <groupId>io.wcm.maven.plugins</groupId>
+          <artifactId>wcmio-content-package-maven-plugin</artifactId>
+          <version>1.6.18</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>install</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <serviceURL>${protocol}://${sling.host}:${sling.port}/bin/cpm/package.service.html
+            </serviceURL>
+            <userId>${sling.username}</userId>
+            <password>${sling.password}</password>
+            <packageFile>target/${project.artifactId}-${project.version}.zip</packageFile>
+          </configuration>
+        </plugin>
+
+        <!-- HTL Plugin -->
+        <plugin>
+          <groupId>org.apache.sling</groupId>
+          <artifactId>htl-maven-plugin</artifactId>
+          <version>1.2.2-1.4.0</version>
+          <configuration>
+            <failOnWarnings>true</failOnWarnings>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>3.0.0-M3</version>
+          <configuration>
+            <trimStackTrace>false</trimStackTrace>
+            <includes>
+              <include>**/*Test.class</include>
+            </includes>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>0.8.4</version>
+          <executions>
+            <execution>
+              <id>default-prepare-agent</id>
+              <goals>
+                <goal>prepare-agent</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-checkstyle-plugin</artifactId>
+          <version>3.0.0</version>
+          <executions>
+            <execution>
+              <id>validate</id>
+              <phase>validate</phase>
+              <goals>
+                <goal>check</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <configLocation>google_checks.xml</configLocation>
+            <encoding>UTF-8</encoding>
+            <consoleOutput>true</consoleOutput>
+            <failsOnError>true</failsOnError>
+            <failOnViolation>true</failOnViolation>
+            <violationSeverity>warn</violationSeverity>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>findbugs-maven-plugin</artifactId>
+          <version>3.0.5</version>
+          <configuration>
+            <effort>Max</effort>
+            <threshold>Low</threshold>
+            <xmlOutput>true</xmlOutput>
+            <failOnError>true</failOnError>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>check</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>ianal-maven-plugin</artifactId>
+          <version>1.0-alpha-1</version>
+          <executions>
+            <execution>
+              <id>verify-legal-files</id>
+              <goals>
+                <goal>verify-legal-files</goal>
+              </goals>
+              <configuration>
+                <!-- Fail the build if any artifacts are missing legal files -->
+                <strict>false</strict>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>ianal-maven-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.1.1</version>
+      </plugin>
+    </plugins>
+
+  </build>
+
+  <profiles>
+    <profile>
+      <id>mutationTest</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-maven</artifactId>
+            <version>1.4.3</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>mutationCoverage</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <outputFormats>
+                <outputFormat>XML</outputFormat>
+                <outputFormat>HTML</outputFormat>
+              </outputFormats>
+              <targetClasses>
+                <param>com.slingware.*</param>
+              </targetClasses>
+              <targetTests>
+                <param>com.slingware.*</param>
+              </targetTests>
+              <mutators>
+                <mutator>CONDITIONALS_BOUNDARY</mutator>
+                <mutators>NEGATE_CONDITIONALS</mutators>
+                <mutators>REMOVE_CONDITIONALS</mutators>
+                <mutators>MATH</mutators>
+                <mutators>INCREMENTS</mutators>
+                <mutators>INVERT_NEGS</mutators>
+                <mutators>INLINE_CONSTS</mutators>
+                <mutators>RETURN_VALS</mutators>
+                <mutators>VOID_METHOD_CALLS</mutators>
+                <mutators>TRUE_RETURNS</mutators>
+                <mutators>FALSE_RETURNS</mutators>
+                <mutators>PRIMITIVE_RETURNS</mutators>
+                <mutators>EMPTY_RETURNS</mutators>
+                <mutators>NULL_RETURNS</mutators>
+                <mutators>NON_VOID_METHOD_CALLS</mutators>
+                <mutators>CONSTRUCTOR_CALLS</mutators>
+                <mutators>EXPERIMENTAL_MEMBER_VARIABLE</mutators>
+                <mutators>EXPERIMENTAL_SWITCH</mutators>
+              </mutators>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+  </profiles>
 </project>
