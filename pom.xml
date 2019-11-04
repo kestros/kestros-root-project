@@ -1,4 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
@@ -34,6 +52,15 @@
   </organization>
 
   <url>https://www.kestros.io</url>
+
+  <properties>
+    <sling.host>localhost</sling.host>
+    <sling.port>8080</sling.port>
+    <sling.username>admin</sling.username>
+    <sling.password>admin</sling.password>
+    <sling.protocol>http</sling.protocol>
+    <sling.java.version>8</sling.java.version>
+  </properties>
 
   <dependencyManagement>
     <dependencies>
@@ -345,7 +372,7 @@
             </execution>
           </executions>
           <configuration>
-            <serviceURL>${protocol}://${sling.host}:${sling.port}/bin/cpm/package.service.html
+            <serviceURL>${sling.protocol}://${sling.host}:${sling.port}/bin/cpm/package.service.html
             </serviceURL>
             <userId>${sling.username}</userId>
             <password>${sling.password}</password>
@@ -392,7 +419,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-checkstyle-plugin</artifactId>
-          <version>3.0.0</version>
+          <version>3.1.0</version>
           <executions>
             <execution>
               <id>validate</id>
@@ -400,16 +427,17 @@
               <goals>
                 <goal>check</goal>
               </goals>
+              <configuration>
+                <configLocation>google_checks.xml</configLocation>
+                <encoding>UTF-8</encoding>
+                <consoleOutput>true</consoleOutput>
+                <failsOnError>true</failsOnError>
+                <failOnViolation>true</failOnViolation>
+                <violationSeverity>warning</violationSeverity>
+              </configuration>
             </execution>
           </executions>
-          <configuration>
-            <configLocation>google_checks.xml</configLocation>
-            <encoding>UTF-8</encoding>
-            <consoleOutput>true</consoleOutput>
-            <failsOnError>true</failsOnError>
-            <failOnViolation>true</failOnViolation>
-            <violationSeverity>warn</violationSeverity>
-          </configuration>
+
         </plugin>
 
         <plugin>
@@ -442,9 +470,34 @@
                 <goal>verify-legal-files</goal>
               </goals>
               <configuration>
-                <!-- Fail the build if any artifacts are missing legal files -->
                 <strict>false</strict>
               </configuration>
+            </execution>
+          </executions>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.rat</groupId>
+          <artifactId>apache-rat-plugin</artifactId>
+          <version>0.13</version>
+          <configuration>
+            <excludes>
+              <!-- don't check anything in target -->
+              <exclude>target/*</exclude>
+              <!-- Fixing issues with deleted modules -->
+              <exclude>**/target/*</exclude>
+              <exclude>**/target/**/*</exclude>
+              <exclude>node/**/*</exclude>
+              <exclude>node_modules/**/*</exclude>
+              <exclude>README.md</exclude>
+            </excludes>
+          </configuration>
+          <executions>
+            <execution>
+              <phase>verify</phase>
+              <goals>
+                <goal>check</goal>
+              </goals>
             </execution>
           </executions>
         </plugin>
@@ -453,11 +506,6 @@
     </pluginManagement>
 
     <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-enforcer-plugin</artifactId>
-      </plugin>
-
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -472,6 +520,11 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
         <version>3.1.1</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.rat</groupId>
+        <artifactId>apache-rat-plugin</artifactId>
       </plugin>
     </plugins>
 
@@ -521,6 +574,7 @@
               </mutators>
             </configuration>
           </plugin>
+
         </plugins>
       </build>
     </profile>
