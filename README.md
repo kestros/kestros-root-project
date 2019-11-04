@@ -8,10 +8,6 @@ For `bundle` modules, include the following:
 ```
 <plugin>
     <groupId>org.apache.felix</groupId>
-    <artifactId>maven-scr-plugin</artifactId>
-</plugin>
-<plugin>
-    <groupId>org.apache.felix</groupId>
     <artifactId>maven-bundle-plugin</artifactId>
     <extensions>true</extensions>
     <configuration>
@@ -48,6 +44,15 @@ When building, use `-P,installBundle` to install the Bundle to your Sling instan
 
 ## Features
 
+### Enforcer
+To use the built in maven-enforcer-plugin configuration, , include the following in the `<build>` `<plugins>`
+```
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-enforcer-plugin</artifactId>
+</plugin>
+```
+The built in configuration will fail builds with that are compiled with invalid java version, and bundles using deprecated dependencies.
 ### Checkstyle
 To use the built in checkstyle configuration, include the following in the `<build>` `<plugins>`:
 ```
