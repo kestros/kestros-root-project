@@ -8,10 +8,6 @@ For `bundle` modules, include the following:
 ```
 <plugin>
     <groupId>org.apache.felix</groupId>
-    <artifactId>maven-scr-plugin</artifactId>
-</plugin>
-<plugin>
-    <groupId>org.apache.felix</groupId>
     <artifactId>maven-bundle-plugin</artifactId>
     <extensions>true</extensions>
     <configuration>
