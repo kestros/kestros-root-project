@@ -490,6 +490,7 @@ under the License.
               <exclude>node/**/*</exclude>
               <exclude>node_modules/**/*</exclude>
               <exclude>README.md</exclude>
+              <exclude>*-maven-settings.xml</exclude>
             </excludes>
           </configuration>
           <executions>
