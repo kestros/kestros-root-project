@@ -182,6 +182,73 @@ under the License.
     </dependencies>
   </dependencyManagement>
 
+  <dependencies>
+
+    <dependency>
+      <groupId>javax.annotation</groupId>
+      <artifactId>javax.annotation-api</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.core</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>osgi.cmpn</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>osgi.annotation</artifactId>
+    </dependency>
+
+    <!-- Jackson -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+    </dependency>
+
+    <!-- Findbugs Annotations -->
+    <dependency>
+      <groupId>com.google.code.findbugs</groupId>
+      <artifactId>annotations</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.sling</groupId>
+      <artifactId>org.apache.sling.commons.log</artifactId>
+    </dependency>
+
+    <!-- Testing-->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.sling</groupId>
+      <artifactId>org.apache.sling.testing.sling-mock.junit4</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.sling</groupId>
+      <artifactId>org.apache.sling.testing.sling-mock-oak</artifactId>
+    </dependency>
+
+  </dependencies>
+
   <build>
     <pluginManagement>
       <plugins>
@@ -355,6 +422,8 @@ under the License.
           <configuration>
             <packageType>mixed</packageType>
             <failOnMissingEmbed>true</failOnMissingEmbed>
+            <accessControlHandling>overwrite</accessControlHandling>
+            <embeddedTarget>${sling.embeddedTarget}</embeddedTarget>
             <filterSource>src/content/META-INF/vault/filter.xml</filterSource>
           </configuration>
         </plugin>
@@ -477,6 +546,12 @@ under the License.
         </plugin>
 
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>3.1.1</version>
+        </plugin>
+
+        <plugin>
           <groupId>org.apache.rat</groupId>
           <artifactId>apache-rat-plugin</artifactId>
           <version>0.13</version>
@@ -503,10 +578,46 @@ under the License.
           </executions>
         </plugin>
       </plugins>
-
     </pluginManagement>
 
     <plugins>
+
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>findbugs-maven-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+      </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -520,18 +631,78 @@ under the License.
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
-        <version>3.1.1</version>
       </plugin>
 
       <plugin>
         <groupId>org.apache.rat</groupId>
         <artifactId>apache-rat-plugin</artifactId>
       </plugin>
-    </plugins>
 
+      <plugin>
+        <groupId>org.apache.sling</groupId>
+        <artifactId>htl-maven-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <extensions>true</extensions>
+        <executions>
+          <execution>
+            <id>scr-metadata</id>
+            <goals>
+              <goal>manifest</goal>
+            </goals>
+            <configuration>
+              <supportIncrementalBuild>true</supportIncrementalBuild>
+            </configuration>
+          </execution>
+        </executions>
+        <configuration>
+          <exportScr>true</exportScr>
+          <instructions>
+            <!-- Enable processing of OSGI DS component annotations -->
+            <_dsannotations>*</_dsannotations>
+            <!-- Enable processing of OSGI metatype annotations -->
+            <_metatypeannotations>*</_metatypeannotations>
+            <Export-Package>${rootPackage}.*</Export-Package>
+            <Sling-Model-Packages>
+              ${rootPackage}
+            </Sling-Model-Packages>
+            <Bundle-Category>${bundleCategory}</Bundle-Category>
+          </instructions>
+        </configuration>
+      </plugin>
+
+    </plugins>
   </build>
 
   <profiles>
+
+    <profile>
+      <id>installBundle</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.sling</groupId>
+            <artifactId>sling-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>install-bundle</id>
+                <goals>
+                  <goal>install</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <slingUrl>${sling.protocol}://${sling.host}:${sling.port}/system/console</slingUrl>
+              <user>${sling.username}</user>
+              <password>${sling.password}</password>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
     <profile>
       <id>mutationTest</id>
       <build>
@@ -575,7 +746,6 @@ under the License.
               </mutators>
             </configuration>
           </plugin>
-
         </plugins>
       </build>
     </profile>
