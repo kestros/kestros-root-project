@@ -121,6 +121,12 @@ under the License.
         <version>1.2.4</version>
       </dependency>
 
+      <dependency>
+        <groupId>org.apache.sling</groupId>
+        <artifactId>org.apache.sling.event.api</artifactId>
+        <version>1.0.0</version>
+      </dependency>
+
       <!-- Jackson Dependencies -->
       <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
@@ -219,6 +225,21 @@ under the License.
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.sling</groupId>
+      <artifactId>org.apache.sling.models.api</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.sling</groupId>
+      <artifactId>org.apache.sling.models.impl</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.sling</groupId>
+      <artifactId>org.apache.sling.event.api</artifactId>
     </dependency>
 
     <dependency>
