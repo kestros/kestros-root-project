@@ -59,8 +59,8 @@ under the License.
       <url>${snapshotRepository.url}</url>
     </snapshotRepository>
     <repository>
-      <id>${repository.id}</id>
-      <url>${repository.url}</url>
+      <id>${releaseRepository.id}</id>
+      <url>${releaseRepository.url}</url>
     </repository>
   </distributionManagement>
 
