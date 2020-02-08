@@ -55,12 +55,12 @@ under the License.
 
   <distributionManagement>
     <snapshotRepository>
-      <id>${distributionManagement.snapshotRepository.id}</id>
-      <url>${distributionManagement.snapshotRepository.url}</url>
+      <id>${snapshotRepository.id}</id>
+      <url>$snapshotRepository.url}</url>
     </snapshotRepository>
     <repository>
-      <id>${distributionManagement.repository.id}</id>
-      <url>${distributionManagement.repository.url}</url>
+      <id>${repository.id}</id>
+      <url>${repository.url}</url>
     </repository>
   </distributionManagement>
 
