@@ -53,6 +53,17 @@ under the License.
 
   <url>https://www.kestros.io</url>
 
+  <distributionManagement>
+    <snapshotRepository>
+      <id>${distributionManagement.snapshotRepository.id}</id>
+      <url>${distributionManagement.snapshotRepository.url}</url>
+    </snapshotRepository>
+    <repository>
+      <id>${distributionManagement.repository.id}</id>
+      <url>${distributionManagement.repository.url}</url>
+    </repository>
+  </distributionManagement>
+
   <properties>
     <sling.host>localhost</sling.host>
     <sling.port>8080</sling.port>
