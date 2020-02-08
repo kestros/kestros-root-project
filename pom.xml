@@ -56,7 +56,7 @@ under the License.
   <distributionManagement>
     <snapshotRepository>
       <id>${snapshotRepository.id}</id>
-      <url>$snapshotRepository.url}</url>
+      <url>${snapshotRepository.url}</url>
     </snapshotRepository>
     <repository>
       <id>${repository.id}</id>
