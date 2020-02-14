@@ -51,18 +51,9 @@ under the License.
     <url>https://www.kestros.io</url>
   </organization>
 
-  <url>https://www.kestros.io</url>
-
-  <distributionManagement>
-    <snapshotRepository>
-      <id>${snapshotRepository.id}</id>
-      <url>${snapshotRepository.url}</url>
-    </snapshotRepository>
-    <repository>
-      <id>${releaseRepository.id}</id>
-      <url>${releaseRepository.url}</url>
-    </repository>
-  </distributionManagement>
+  <scm>
+    <url>https://github.com/kestros/kestros-root-project</url>
+  </scm>
 
   <properties>
     <sling.host>localhost</sling.host>
@@ -72,6 +63,11 @@ under the License.
     <sling.protocol>http</sling.protocol>
     <sling.java.version>8</sling.java.version>
   </properties>
+
+  <modules>
+    <module>kestros-parent</module>
+    <module>kestros-parent-strict</module>
+  </modules>
 
   <dependencyManagement>
     <dependencies>
@@ -422,7 +418,6 @@ under the License.
           <configuration>
             <source>1.8</source>
             <target>1.8</target>
-            <compilerArgument>-Xlint:unchecked</compilerArgument>
             <failOnError>true</failOnError>
             <failOnWarning>false</failOnWarning>
           </configuration>
@@ -433,13 +428,6 @@ under the License.
           <groupId>org.apache.felix</groupId>
           <artifactId>maven-bundle-plugin</artifactId>
           <version>4.1.0</version>
-        </plugin>
-
-        <!-- Mutation Testing -->
-        <plugin>
-          <groupId>org.pitest</groupId>
-          <artifactId>pitest-maven</artifactId>
-          <version>1.4.3</version>
         </plugin>
 
         <!-- FileVault Content Package Plugin -->
@@ -525,128 +513,8 @@ under the License.
 
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-checkstyle-plugin</artifactId>
-          <version>3.1.0</version>
-          <executions>
-            <execution>
-              <id>validate</id>
-              <phase>validate</phase>
-              <goals>
-                <goal>check</goal>
-              </goals>
-              <configuration>
-                <configLocation>google_checks.xml</configLocation>
-                <encoding>UTF-8</encoding>
-                <consoleOutput>true</consoleOutput>
-                <failsOnError>true</failsOnError>
-                <failOnViolation>true</failOnViolation>
-                <violationSeverity>warning</violationSeverity>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
-
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-checkstyle-plugin</artifactId>
-          <version>3.1.0</version>
-          <executions>
-            <execution>
-              <id>validate</id>
-              <phase>validate</phase>
-              <goals>
-                <goal>check</goal>
-              </goals>
-              <configuration>
-                <encoding>UTF-8</encoding>
-                <consoleOutput>true</consoleOutput>
-                <failsOnError>true</failsOnError>
-                <failOnViolation>true</failOnViolation>
-                <violationSeverity>warning</violationSeverity>
-                <checkstyleRules>
-                  <module name="Checker">
-                    <module name="TreeWalker">
-                      <module name="JavadocType">
-                        <property name="scope" value="public"/>
-                      </module>
-                      <module name="JavadocMethod">
-                        <property name="scope" value="public"/>
-                      </module>
-                    </module>
-                  </module>
-                </checkstyleRules>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
-
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>findbugs-maven-plugin</artifactId>
-          <version>3.0.5</version>
-          <configuration>
-            <effort>Max</effort>
-            <threshold>Low</threshold>
-            <xmlOutput>true</xmlOutput>
-            <failOnError>true</failOnError>
-          </configuration>
-          <executions>
-            <execution>
-              <goals>
-                <goal>check</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>ianal-maven-plugin</artifactId>
-          <version>1.0-alpha-1</version>
-          <executions>
-            <execution>
-              <id>verify-legal-files</id>
-              <goals>
-                <goal>verify-legal-files</goal>
-              </goals>
-              <configuration>
-                <strict>false</strict>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
-
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-dependency-plugin</artifactId>
           <version>3.1.1</version>
-        </plugin>
-
-        <plugin>
-          <groupId>org.apache.rat</groupId>
-          <artifactId>apache-rat-plugin</artifactId>
-          <version>0.13</version>
-          <configuration>
-            <excludes>
-              <!-- don't check anything in target -->
-              <exclude>target/*</exclude>
-              <!-- Fixing issues with deleted modules -->
-              <exclude>**/target/*</exclude>
-              <exclude>**/target/**/*</exclude>
-              <exclude>node/**/*</exclude>
-              <exclude>node_modules/**/*</exclude>
-              <exclude>README.md</exclude>
-              <exclude>*-maven-settings.xml</exclude>
-            </excludes>
-          </configuration>
-          <executions>
-            <execution>
-              <phase>verify</phase>
-              <goals>
-                <goal>check</goal>
-              </goals>
-            </execution>
-          </executions>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -673,16 +541,6 @@ under the License.
       </plugin>
 
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-      </plugin>
-
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>findbugs-maven-plugin</artifactId>
-      </plugin>
-
-      <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
       </plugin>
@@ -693,18 +551,8 @@ under the License.
       </plugin>
 
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>ianal-maven-plugin</artifactId>
-      </plugin>
-
-      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.rat</groupId>
-        <artifactId>apache-rat-plugin</artifactId>
       </plugin>
 
       <plugin>
