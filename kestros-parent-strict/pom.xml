@@ -195,4 +195,54 @@
     </plugins>
   </build>
 
+  <profiles>
+    <profile>
+      <id>mutationTest</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-maven</artifactId>
+            <version>1.4.3</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>mutationCoverage</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <outputFormats>
+                <outputFormat>XML</outputFormat>
+                <outputFormat>HTML</outputFormat>
+              </outputFormats>
+
+              <mutators>
+                <mutator>CONDITIONALS_BOUNDARY</mutator>
+                <mutators>NEGATE_CONDITIONALS</mutators>
+                <mutators>REMOVE_CONDITIONALS</mutators>
+                <mutators>MATH</mutators>
+                <mutators>INCREMENTS</mutators>
+                <mutators>INVERT_NEGS</mutators>
+                <mutators>INLINE_CONSTS</mutators>
+                <mutators>RETURN_VALS</mutators>
+                <mutators>VOID_METHOD_CALLS</mutators>
+                <mutators>TRUE_RETURNS</mutators>
+                <mutators>FALSE_RETURNS</mutators>
+                <mutators>PRIMITIVE_RETURNS</mutators>
+                <mutators>EMPTY_RETURNS</mutators>
+                <mutators>NULL_RETURNS</mutators>
+                <mutators>NON_VOID_METHOD_CALLS</mutators>
+                <mutators>CONSTRUCTOR_CALLS</mutators>
+                <mutators>EXPERIMENTAL_MEMBER_VARIABLE</mutators>
+                <mutators>EXPERIMENTAL_SWITCH</mutators>
+              </mutators>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    
+  </profiles>
+
 </project>
