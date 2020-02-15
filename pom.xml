@@ -385,7 +385,7 @@ under the License.
                     <excludes>
                       <exclude>org.apache.sling:maven-sling-plugin</exclude>
                     </excludes>
-                    <message>Please change all occurences of maven-sling-plugin to
+                    <message>Please change all occurrences of maven-sling-plugin to
                       sling-maven-plugin (plugin was renamed).
                     </message>
                   </bannedPlugins>
