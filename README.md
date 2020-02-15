@@ -68,33 +68,20 @@ When building, use `-P,installBundle` to install the Bundle to your Sling instan
 ## Features
 
 ### Enforcer
-To use the built in maven-enforcer-plugin configuration, , include the following in the `<build>` `<plugins>`
-```
-<plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-enforcer-plugin</artifactId>
-</plugin>
-```
-The built in configuration will fail builds with that are compiled with invalid java version, and bundles using deprecated dependencies.
+Both `kestros-parent` and `kestros-parent-strict` use the `maven-enforcer-plugin` to enforce Java, Maven, and Sling versions during the build, as well as ban some plugins from being used.
+
+Banned plugins include:
+ * `org.apache.felix:maven-scr-plugin` - Felix SCR annotations and the maven-scr-plugin are no longer supported - please migrate to OSGi.
+ * `org.apache.felix:org.apache.felix.scr.annotations` - Felix SCR annotations and the maven-scr-plugin are no longer supported - please migrate to OSGi.
+ * `org.apache.sling:maven-sling-plugin` - Please change all occurrences of maven-sling-plugin to sling-maven-plugin (plugin was renamed).
+ 
+ To skip the enforcer configuration, use `-Denforcer.skip`. 
 ### Checkstyle
-To use the built in checkstyle configuration, include the following in the `<build>` `<plugins>`:
-```
-<plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-checkstyle-plugin</artifactId>
-</plugin>
-```
-This project uses Google's Java checkstyle. For more information, read the [Google's Java Style Guide] (https://google.github.io/styleguide/javaguide.html).
+The `kestros-parent-strict` pom uses Google's Java checkstyle configuration, with minor overrides for mandating full javadoc coverage on public classes and methods.
+For more information, see the [Google's Java Style Guide] (https://google.github.io/styleguide/javaguide.html).
 [google_checks.xml] (https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml)
 ### Findbugs
-To use the built in findbugs configuration, include the following in the `<build>` `<plugins>`: 
-```
-<plugin>
-    <groupId>org.codehaus.mojo</groupId>
-    <artifactId>findbugs-maven-plugin</artifactId>
-</plugin>
 
-```
 
 ### Mutation Testing
 To run mutation testing using built in configuration, use the `mutationTest` build profile.
