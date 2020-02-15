@@ -75,13 +75,18 @@ Banned plugins include:
  * `org.apache.felix:org.apache.felix.scr.annotations` - Felix SCR annotations and the maven-scr-plugin are no longer supported - please migrate to OSGi.
  * `org.apache.sling:maven-sling-plugin` - Please change all occurrences of maven-sling-plugin to sling-maven-plugin (plugin was renamed).
  
- To skip the enforcer configuration, use `-Denforcer.skip`. 
-### Checkstyle
+ To skip the enforcer configuration, use `-Denforcer.skip`.
+ 
+### kestros-parent-strict Only 
+#### Checkstyle
 The `kestros-parent-strict` pom uses Google's Java checkstyle configuration, with minor overrides for mandating full javadoc coverage on public classes and methods.
 For more information, see the [Google's Java Style Guide] (https://google.github.io/styleguide/javaguide.html).
 [google_checks.xml] (https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml)
-### Findbugs
 
-
-### Mutation Testing
+To skip use `-Dcheckstyle.skip`.
+#### Findbugs
+`maven-findbugs-plugin` is used to check for bug patterns in Java code and will fail the build when any are detected.  `@SuppressFBWarnings("<<ERROR_NAME>>")` can be used to suppress false positives, or `-Dfindbugs.skip` to skip.
+#### Rat
+`apache-rat-plugin` is used to enforce the licensing of all files within a project.  To skip use `-Drat.skip`.
+    #### Mutation Testing
 To run mutation testing using built in configuration, use the `mutationTest` build profile.
