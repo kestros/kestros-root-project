@@ -33,7 +33,10 @@
   <artifactId>kestros-parent-strict</artifactId>
 
   <name>Kestros Parent - Strict</name>
-  <description></description>
+  <description>Base Sling project build manager. Contains dependency and plugin versions for
+    building and installing Bundles and Packages to Sling instances. Uses maven-checkstyle-plugin,
+    maven-findbugs-plugin, and apache-rat-plugin to enforce standards.
+  </description>
   <packaging>pom</packaging>
 
 
@@ -242,7 +245,7 @@
         </plugins>
       </build>
     </profile>
-    
+
   </profiles>
 
 </project>

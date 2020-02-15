@@ -33,6 +33,9 @@
   <artifactId>kestros-parent</artifactId>
 
   <name>Kestros Parent</name>
+  <description>Base Sling project build manager. Contains dependency and plugin versions for
+    building and installing Bundles and Packages to Sling instances.
+  </description>
   <packaging>pom</packaging>
 
 </project>
