@@ -1,6 +1,29 @@
 # Kestros Root Project
 Base Kestros project build manager. Contains dependency and plugin versions for building and installing Bundles and Packages to Kestros or Sling instances.
 
+## Usage
+To use the Kestros pom configuration, reference either `kestros-parent` or `kestros-parent-strict` as the parent.
+
+```
+  <parent>
+    <groupId>io.kestros.commons</groupId>
+    <artifactId>kestros-parent</artifactId>
+    <version>0.0.2-SNAPSHOT</version>
+    <relativePath/>
+  </parent>
+```
+`kestros-parent` is the baseline model, containing all of the dependency versions and build profiles for installing bundles and packages to Kestros/Sling.
+
+```
+  <parent>
+    <groupId>io.kestros.commons</groupId>
+    <artifactId>kestros-parent-strict</artifactId>
+    <version>0.0.2-SNAPSHOT</version>
+    <relativePath/>
+  </parent>
+```
+`kestros-parent-strict` is an extension of `kestros-parent`, but includes configurations for plugins that can break the build when code quality issues are detected (maven-checkstyle-plugin, maven-findbugs-plugin, maven-rat-plugin). 
+
 ## Project Installation
 ### Build and Install Bundle
 For `bundle` modules, include the following:
