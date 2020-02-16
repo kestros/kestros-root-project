@@ -100,23 +100,6 @@
         </plugin>
 
         <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>ianal-maven-plugin</artifactId>
-          <version>1.0-alpha-1</version>
-          <executions>
-            <execution>
-              <id>verify-legal-files</id>
-              <goals>
-                <goal>verify-legal-files</goal>
-              </goals>
-              <configuration>
-                <strict>true</strict>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
-
-        <plugin>
           <groupId>org.apache.rat</groupId>
           <artifactId>apache-rat-plugin</artifactId>
           <version>0.13</version>
@@ -160,11 +143,6 @@
       <plugin>
         <groupId>org.apache.rat</groupId>
         <artifactId>apache-rat-plugin</artifactId>
-      </plugin>
-
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>ianal-maven-plugin</artifactId>
       </plugin>
     </plugins>
   </build>
