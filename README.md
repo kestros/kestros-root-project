@@ -13,6 +13,7 @@ Base Kestros project build manager. Contains dependency and plugin versions for 
       - [Checkstyle](#checkstyle)
       - [Findbugs](#findbugs)
       - [Rat](#rat)
+      - [Mutation Testing](#mutation-testing)
 
 ## Usage
 To use the Kestros pom configuration, reference either `kestros-parent` or `kestros-parent-strict` as the parent.
@@ -92,14 +93,18 @@ Banned plugins include:
  
 ### kestros-parent-strict Only 
 #### Checkstyle
-The `kestros-parent-strict` pom uses Google's Java checkstyle configuration, with minor overrides for mandating full javadoc coverage on public classes and methods.
+The `kestros-parent-strict` pom uses a [custom Checkstyle configuration] (https://github.com/kestros/kestros-root-project/blob//build-tools/src/main/resources/checkstyle.xml) Google's Java checkstyle configuration, with minor overrides for mandating full javadoc coverage on public classes and methods.
 For more information, see the [Google's Java Style Guide] (https://google.github.io/styleguide/javaguide.html).
 [google_checks.xml] (https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml)
+
+
 
 To skip use `-Dcheckstyle.skip`.
 #### Findbugs
 `maven-findbugs-plugin` is used to check for bug patterns in Java code and will fail the build when any are detected.  `@SuppressFBWarnings("<<ERROR_NAME>>")` can be used to suppress false positives, or `-Dfindbugs.skip` to skip.
+
 #### Rat
 `apache-rat-plugin` is used to enforce the licensing of all files within a project.  To skip use `-Drat.skip`.
-    #### Mutation Testing
+
+#### Mutation Testing
 To run mutation testing using built in configuration, use the `mutationTest` build profile.
