@@ -33,6 +33,7 @@ under the License.
     Base Sling project build manager. Contains dependency and plugin versions for
     building and installing Bundles and Packages to Sling instances.
   </description>
+  <url>https://kestros.io</url>
 
   <packaging>pom</packaging>
 
