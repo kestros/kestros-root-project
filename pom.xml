@@ -52,8 +52,20 @@ under the License.
   </organization>
 
   <scm>
-    <url>https://github.com/kestros/kestros-root-project</url>
+    <connection>scm:git:git://github.com/kestros/kestros-root-project.git</connection>
+    <developerConnection>scm:git:ssh://github.com:kestros/kestros-root-project.git
+    </developerConnection>
+    <url>https://github.com/kestros/kestros-root-project/tree/master</url>
   </scm>
+
+  <developers>
+    <developer>
+      <name>Danny Moulton</name>
+      <email>danny.moulton@kestros.io</email>
+      <organization>Kestros, Inc.</organization>
+      <organizationUrl>https://kestros.io</organizationUrl>
+    </developer>
+  </developers>
 
   <properties>
     <sling.host>localhost</sling.host>
