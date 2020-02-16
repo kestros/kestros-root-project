@@ -78,6 +78,7 @@ under the License.
   </properties>
 
   <modules>
+    <module>build-tools</module>
     <module>kestros-parent</module>
     <module>kestros-parent-strict</module>
   </modules>
@@ -425,7 +426,7 @@ under the License.
             </execution>
           </executions>
         </plugin>
-        
+
         <!-- Maven Source -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
