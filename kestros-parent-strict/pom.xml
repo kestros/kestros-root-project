@@ -25,7 +25,7 @@
 
   <parent>
     <groupId>io.kestros.commons</groupId>
-    <artifactId>kestros-root-project</artifactId>
+    <artifactId>kestros-parent</artifactId>
     <version>0.0.2-SNAPSHOT</version>
     <relativePath/>
   </parent>
@@ -51,6 +51,37 @@
         </plugin>
 
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-checkstyle-plugin</artifactId>
+          <version>3.1.1</version>
+          <inherited>true</inherited>
+          <dependencies>
+            <dependency>
+              <groupId>io.kestros.commons</groupId>
+              <artifactId>kestros-build-tools</artifactId>
+              <version>0.0.2-SNAPSHOT</version>
+            </dependency>
+          </dependencies>
+          <executions>
+            <execution>
+              <id>validate</id>
+              <phase>validate</phase>
+              <goals>
+                <goal>check</goal>
+              </goals>
+              <configuration>
+                <configLocation>checkstyle.xml</configLocation>
+                <encoding>UTF-8</encoding>
+                <consoleOutput>true</consoleOutput>
+                <failsOnError>true</failsOnError>
+                <failOnViolation>true</failOnViolation>
+                <violationSeverity>warning</violationSeverity>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+
+        <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>findbugs-maven-plugin</artifactId>
           <version>3.0.5</version>
@@ -69,63 +100,6 @@
           </executions>
         </plugin>
 
-
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-checkstyle-plugin</artifactId>
-          <version>3.1.0</version>
-          <executions>
-            <execution>
-              <id>validate</id>
-              <phase>validate</phase>
-              <goals>
-                <goal>check</goal>
-              </goals>
-              <configuration>
-                <configLocation>google_checks.xml</configLocation>
-                <encoding>UTF-8</encoding>
-                <consoleOutput>true</consoleOutput>
-                <failsOnError>true</failsOnError>
-                <failOnViolation>true</failOnViolation>
-                <violationSeverity>warning</violationSeverity>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
-
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-checkstyle-plugin</artifactId>
-          <version>3.1.0</version>
-          <executions>
-            <execution>
-              <id>validate</id>
-              <phase>validate</phase>
-              <goals>
-                <goal>check</goal>
-              </goals>
-              <configuration>
-                <encoding>UTF-8</encoding>
-                <consoleOutput>true</consoleOutput>
-                <failsOnError>true</failsOnError>
-                <failOnViolation>true</failOnViolation>
-                <violationSeverity>warning</violationSeverity>
-                <checkstyleRules>
-                  <module name="Checker">
-                    <module name="TreeWalker">
-                      <module name="JavadocType">
-                        <property name="scope" value="public"/>
-                      </module>
-                      <module name="JavadocMethod">
-                        <property name="scope" value="public"/>
-                      </module>
-                    </module>
-                  </module>
-                </checkstyleRules>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>ianal-maven-plugin</artifactId>
@@ -137,7 +111,7 @@
                 <goal>verify-legal-files</goal>
               </goals>
               <configuration>
-                <strict>false</strict>
+                <strict>true</strict>
               </configuration>
             </execution>
           </executions>
