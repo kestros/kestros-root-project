@@ -27,7 +27,6 @@
     <groupId>io.kestros.commons</groupId>
     <artifactId>kestros-root-project</artifactId>
     <version>0.0.2-SNAPSHOT</version>
-    <relativePath/>
   </parent>
 
   <artifactId>kestros-build-tools</artifactId>
