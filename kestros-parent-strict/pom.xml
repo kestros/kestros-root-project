@@ -42,6 +42,17 @@
   <build>
     <pluginManagement>
       <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.2.0</version>
+          <configuration>
+            <includes>
+              <include>LICENSE</include>
+            </includes>
+          </configuration>
+        </plugin>
+
         <!-- Mutation Testing -->
         <plugin>
           <groupId>org.pitest</groupId>
@@ -125,11 +136,15 @@
             </execution>
           </executions>
         </plugin>
+
       </plugins>
     </pluginManagement>
 
     <plugins>
-
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
