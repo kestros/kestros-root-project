@@ -33,6 +33,7 @@ under the License.
     Base Sling project build manager. Contains dependency and plugin versions for
     building and installing Bundles and Packages to Sling instances.
   </description>
+  <url>https://kestros.io</url>
 
   <packaging>pom</packaging>
 
@@ -52,8 +53,20 @@ under the License.
   </organization>
 
   <scm>
-    <url>https://github.com/kestros/kestros-root-project</url>
+    <connection>scm:git:git://github.com/kestros/kestros-root-project.git</connection>
+    <developerConnection>scm:git:ssh://github.com:kestros/kestros-root-project.git
+    </developerConnection>
+    <url>https://github.com/kestros/kestros-root-project/tree/master</url>
   </scm>
+
+  <developers>
+    <developer>
+      <name>Danny Moulton</name>
+      <email>danny.moulton@kestros.io</email>
+      <organization>Kestros, Inc.</organization>
+      <organizationUrl>https://kestros.io</organizationUrl>
+    </developer>
+  </developers>
 
   <properties>
     <sling.host>localhost</sling.host>
@@ -65,6 +78,7 @@ under the License.
   </properties>
 
   <modules>
+    <module>build-tools</module>
     <module>kestros-parent</module>
     <module>kestros-parent-strict</module>
   </modules>
@@ -385,12 +399,30 @@ under the License.
                     <excludes>
                       <exclude>org.apache.sling:maven-sling-plugin</exclude>
                     </excludes>
-                    <message>Please change all occurences of maven-sling-plugin to
+                    <message>Please change all occurrences of maven-sling-plugin to
                       sling-maven-plugin (plugin was renamed).
                     </message>
                   </bannedPlugins>
                 </rules>
               </configuration>
+            </execution>
+          </executions>
+        </plugin>
+
+        <!-- Maven Javadoc -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>3.1.1</version>
+          <configuration>
+            <source>8</source>
+          </configuration>
+          <executions>
+            <execution>
+              <id>attach-javadocs</id>
+              <goals>
+                <goal>jar</goal>
+              </goals>
             </execution>
           </executions>
         </plugin>
@@ -415,6 +447,7 @@ under the License.
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.8.1</version>
           <configuration>
             <source>1.8</source>
             <target>1.8</target>
@@ -452,6 +485,12 @@ under the License.
             <embeddedTarget>${sling.embeddedTarget}</embeddedTarget>
             <filterSource>src/content/META-INF/vault/filter.xml</filterSource>
           </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.sling</groupId>
+          <artifactId>sling-maven-plugin</artifactId>
+          <version>2.4.2</version>
         </plugin>
 
         <!-- Content Package Install Plugin -->
@@ -533,6 +572,40 @@ under the License.
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>empty-javadoc-jar</id>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+            <configuration>
+              <classifier>javadoc</classifier>
+              <classesDirectory>${basedir}/javadoc</classesDirectory>
+            </configuration>
+          </execution>
+          <execution>
+            <id>empty-sources-jar</id>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+            <configuration>
+              <classifier>sources</classifier>
+              <classesDirectory>${basedir}/javadoc</classesDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
       </plugin>
 
@@ -554,11 +627,7 @@ under the License.
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.8.1</version>
       </plugin>
 
       <plugin>
