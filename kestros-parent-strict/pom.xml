@@ -58,8 +58,7 @@
               <groupId>io.kestros.commons</groupId>
               <artifactId>kestros-build-tools</artifactId>
               <version>0.0.2</version>
-            </dependency>
-          </dependencies>
+            </dependency></dependencies>
           <executions>
             <execution>
               <id>validate</id>
