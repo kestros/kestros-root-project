@@ -33,7 +33,7 @@ under the License.
     Base Sling project build manager. Contains dependency and plugin versions for
     building and installing Bundles and Packages to Sling instances.
   </description>
-  <url>https://kestros.io</url>
+  <url>https://www.kestros.io</url>
 
   <packaging>pom</packaging>
 
@@ -45,10 +45,10 @@ under the License.
     </license>
   </licenses>
 
-  <inceptionYear>2019</inceptionYear>
+  <inceptionYear>2020</inceptionYear>
 
   <organization>
-    <name>Kestros</name>
+    <name>Kestros, Inc.</name>
     <url>https://www.kestros.io</url>
   </organization>
 
@@ -64,7 +64,13 @@ under the License.
       <name>Danny Moulton</name>
       <email>danny.moulton@kestros.io</email>
       <organization>Kestros, Inc.</organization>
-      <organizationUrl>https://kestros.io</organizationUrl>
+      <organizationUrl>https://www.kestros.io</organizationUrl>
+    </developer>
+    <developer>
+      <name>Kevin O'Brien</name>
+      <email>kevin.obrien@kestros.io</email>
+      <organization>Kestros, Inc.</organization>
+      <organizationUrl>https://www.kestros.io</organizationUrl>
     </developer>
   </developers>
 
@@ -78,7 +84,7 @@ under the License.
   </properties>
 
   <modules>
-    <module>build-tools</module>
+    <module>kestros-build-tools</module>
     <module>kestros-parent</module>
     <module>kestros-parent-strict</module>
   </modules>
@@ -573,6 +579,7 @@ under the License.
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
+        <version>3.2.0</version>
         <executions>
           <execution>
             <id>empty-javadoc-jar</id>

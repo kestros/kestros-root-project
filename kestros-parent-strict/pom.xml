@@ -38,7 +38,6 @@
   </description>
   <packaging>pom</packaging>
 
-
   <build>
     <pluginManagement>
       <plugins>
@@ -196,7 +195,6 @@
         </plugins>
       </build>
     </profile>
-
   </profiles>
 
 </project>

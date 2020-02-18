@@ -32,7 +32,7 @@
   <artifactId>kestros-build-tools</artifactId>
 
   <name>Kestros Build Tools</name>
-  <description>
-  </description>
+  <description>Kestros build tool configurations.</description>
+  <packaging>pom</packaging>
 
 </project>
