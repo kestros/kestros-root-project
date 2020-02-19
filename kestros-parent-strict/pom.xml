@@ -37,17 +37,7 @@
     maven-findbugs-plugin, and apache-rat-plugin to enforce standards.
   </description>
   <packaging>pom</packaging>
-
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>io.kestros.commons</groupId>
-        <artifactId>kestros-build-tools</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
-
+  
   <build>
     <pluginManagement>
       <plugins>
