@@ -57,7 +57,7 @@
             <dependency>
               <groupId>io.kestros.commons</groupId>
               <artifactId>kestros-build-tools</artifactId>
-              <version>${project.version}</version>
+              <version>0.0.4</version>
             </dependency>
           </dependencies>
           <executions>
