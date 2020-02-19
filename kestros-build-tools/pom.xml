@@ -26,13 +26,12 @@
   <parent>
     <groupId>io.kestros.commons</groupId>
     <artifactId>kestros-root-project</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
   </parent>
 
   <artifactId>kestros-build-tools</artifactId>
 
   <name>Kestros Build Tools</name>
   <description>Kestros build tool configurations.</description>
-  <packaging>pom</packaging>
 
 </project>
