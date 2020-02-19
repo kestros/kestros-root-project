@@ -37,7 +37,7 @@
     maven-findbugs-plugin, and apache-rat-plugin to enforce standards.
   </description>
   <packaging>pom</packaging>
-  
+
   <build>
     <pluginManagement>
       <plugins>
