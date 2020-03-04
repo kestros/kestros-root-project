@@ -26,7 +26,7 @@ under the License.
   <groupId>io.kestros.commons</groupId>
   <artifactId>kestros-root-project</artifactId>
 
-  <version>0.0.4</version>
+  <version>0.0.5-SNAPSHOT</version>
 
   <name>Kestros Root Project</name>
   <description>
@@ -487,7 +487,8 @@ under the License.
           <configuration>
             <packageType>mixed</packageType>
             <failOnMissingEmbed>true</failOnMissingEmbed>
-            <accessControlHandling>overwrite</accessControlHandling>
+            <accessControlHandling>merge</accessControlHandling>
+            <allowIndexDefinitions>true</allowIndexDefinitions>
             <embeddedTarget>${sling.embeddedTarget}</embeddedTarget>
             <filterSource>src/content/META-INF/vault/filter.xml</filterSource>
           </configuration>
