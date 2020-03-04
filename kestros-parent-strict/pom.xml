@@ -26,7 +26,7 @@
   <parent>
     <groupId>io.kestros.commons</groupId>
     <artifactId>kestros-root-project</artifactId>
-    <version>0.0.5-SNAPSHOT</version>
+    <version>0.0.5</version>
   </parent>
 
   <artifactId>kestros-parent-strict</artifactId>
@@ -57,7 +57,7 @@
             <dependency>
               <groupId>io.kestros.commons</groupId>
               <artifactId>kestros-build-tools</artifactId>
-              <version>0.0.5-SNAPSHOT</version>
+              <version>0.0.5</version>
             </dependency>
           </dependencies>
           <executions>

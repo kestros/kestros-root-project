@@ -22,7 +22,7 @@ To use the Kestros pom configuration, reference either `kestros-parent` or `kest
   <parent>
     <groupId>io.kestros.commons</groupId>
     <artifactId>kestros-parent</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.5</version>
     <relativePath/>
   </parent>
 ```
@@ -32,7 +32,7 @@ To use the Kestros pom configuration, reference either `kestros-parent` or `kest
   <parent>
     <groupId>io.kestros.commons</groupId>
     <artifactId>kestros-parent-strict</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.5</version>
     <relativePath/>
   </parent>
 ```
