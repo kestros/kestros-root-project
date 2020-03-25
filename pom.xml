@@ -26,7 +26,7 @@ under the License.
   <groupId>io.kestros.commons</groupId>
   <artifactId>kestros-root-project</artifactId>
 
-  <version>0.0.5</version>
+  <version>0.0.6-SNAPSHOT</version>
 
   <name>Kestros Root Project</name>
   <description>
@@ -210,8 +210,15 @@ under the License.
       <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-api</artifactId>
-        <version>1.7.25</version>
+        <version>1.7.30</version>
       </dependency>
+
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-ext</artifactId>
+        <version>1.7.30</version>
+      </dependency>
+
 
       <dependency>
         <groupId>org.apache.sling</groupId>
@@ -258,6 +265,11 @@ under the License.
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-ext</artifactId>
     </dependency>
 
     <dependency>
