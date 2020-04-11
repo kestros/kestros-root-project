@@ -214,13 +214,6 @@ under the License.
       </dependency>
 
       <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-ext</artifactId>
-        <version>1.7.30</version>
-      </dependency>
-
-
-      <dependency>
         <groupId>org.apache.sling</groupId>
         <artifactId>org.apache.sling.commons.log</artifactId>
         <version>5.0.0</version>
@@ -265,11 +258,6 @@ under the License.
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-ext</artifactId>
     </dependency>
 
     <dependency>
