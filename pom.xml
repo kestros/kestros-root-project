@@ -26,7 +26,7 @@ under the License.
   <groupId>io.kestros.commons</groupId>
   <artifactId>kestros-root-project</artifactId>
 
-  <version>0.0.5</version>
+  <version>0.0.6</version>
 
   <name>Kestros Root Project</name>
   <description>
@@ -210,7 +210,7 @@ under the License.
       <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-api</artifactId>
-        <version>1.7.25</version>
+        <version>1.7.30</version>
       </dependency>
 
       <dependency>
