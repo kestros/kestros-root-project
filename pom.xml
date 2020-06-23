@@ -26,7 +26,7 @@ under the License.
   <groupId>io.kestros.commons</groupId>
   <artifactId>kestros-root-project</artifactId>
 
-  <version>0.0.6</version>
+  <version>0.1.0-SNAPSHOT</version>
 
   <name>Kestros Root Project</name>
   <description>

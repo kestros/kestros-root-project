@@ -26,7 +26,7 @@
   <parent>
     <groupId>io.kestros.commons</groupId>
     <artifactId>kestros-root-project</artifactId>
-    <version>0.0.6</version>
+    <version>0.1.0-SNAPSHOT</version>
   </parent>
 
   <artifactId>kestros-parent-strict</artifactId>
@@ -57,7 +57,7 @@
             <dependency>
               <groupId>io.kestros.commons</groupId>
               <artifactId>kestros-build-tools</artifactId>
-              <version>0.0.6</version>
+              <version>0.1.0-SNAPSHOT</version>
             </dependency>
           </dependencies>
           <executions>
@@ -109,6 +109,7 @@
               <!-- Fixing issues with deleted modules -->
               <exclude>**/target/*</exclude>
               <exclude>**/target/**/*</exclude>
+              <exclude>**/*.iml</exclude>
               <exclude>node/**/*</exclude>
               <exclude>node_modules/**/*</exclude>
               <exclude>**/README.md</exclude>
