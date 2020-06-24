@@ -116,6 +116,8 @@
               <exclude>package.json</exclude>
               <exclude>package-lock.json</exclude>
               <exclude>*-maven-settings.xml</exclude>
+              <exclude>coverage/**/*</exclude>
+              <exclude>.nyc_output/**/*</exclude>
             </excludes>
           </configuration>
           <executions>
