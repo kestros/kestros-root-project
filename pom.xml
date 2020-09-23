@@ -26,7 +26,7 @@ under the License.
   <groupId>io.kestros.commons</groupId>
   <artifactId>kestros-root-project</artifactId>
 
-  <version>0.1.1</version>
+  <version>0.1.2-SNAPSHOT</version>
 
   <name>Kestros Root Project</name>
   <description>
@@ -109,15 +109,15 @@ under the License.
       <!-- OSGi Dependencies -->
       <dependency>
         <groupId>org.osgi</groupId>
-        <artifactId>org.osgi.core</artifactId>
-        <version>6.0.0</version>
+        <artifactId>osgi.core</artifactId>
+        <version>7.0.0</version>
         <scope>provided</scope>
       </dependency>
 
       <dependency>
         <groupId>org.osgi</groupId>
         <artifactId>osgi.cmpn</artifactId>
-        <version>6.0.0</version>
+        <version>7.0.0</version>
         <scope>provided</scope>
       </dependency>
 
@@ -245,7 +245,7 @@ under the License.
 
     <dependency>
       <groupId>org.osgi</groupId>
-      <artifactId>org.osgi.core</artifactId>
+      <artifactId>osgi.core</artifactId>
     </dependency>
 
     <dependency>
