@@ -109,7 +109,7 @@ under the License.
       <!-- OSGi Dependencies -->
       <dependency>
         <groupId>org.osgi</groupId>
-        <artifactId>org.osgi.core</artifactId>
+        <artifactId>osgi.core</artifactId>
         <version>6.0.0</version>
         <scope>provided</scope>
       </dependency>
@@ -245,7 +245,7 @@ under the License.
 
     <dependency>
       <groupId>org.osgi</groupId>
-      <artifactId>org.osgi.core</artifactId>
+      <artifactId>osgi.core</artifactId>
     </dependency>
 
     <dependency>
