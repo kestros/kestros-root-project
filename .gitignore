@@ -6,3 +6,8 @@
 
 *.iml
 target/
+
+\.settings
+\.project
+\.checkstyle
+\.classpath
