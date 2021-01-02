@@ -26,7 +26,7 @@ under the License.
   <groupId>io.kestros.commons</groupId>
   <artifactId>kestros-root-project</artifactId>
 
-  <version>0.1.2</version>
+  <version>0.1.3-SNAPSHOT</version>
 
   <name>Kestros Root Project</name>
   <description>
@@ -91,6 +91,44 @@ under the License.
 
   <dependencyManagement>
     <dependencies>
+
+      <!-- Kestros Commons -->
+      <dependency>
+        <groupId>io.kestros.commons</groupId>
+        <artifactId>kestros-structured-sling-models</artifactId>
+        <version>0.1.2-SNAPSHOT</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.kestros.commons</groupId>
+        <artifactId>kestros-osgi-service-utils</artifactId>
+        <version>0.1.2-SNAPSHOT</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>io.kestros.commons</groupId>
+        <artifactId>kestros-validation-foundation</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.kestros.commons</groupId>
+        <artifactId>kestros-sling-ui-libraries</artifactId>
+        <version>0.2.0-SNAPSHOT</version>
+      </dependency>
+
+      <!-- Kestros CMS -->
+      <dependency>
+        <groupId>io.kestros.cms</groupId>
+        <artifactId>kestros-user-foundation</artifactId>
+        <version>0.1.2-SNAPSHOT</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.kestros.cms</groupId>
+        <artifactId>kestros-cms-foundation</artifactId>
+        <version>0.1.1-SNAPSHOT</version>
+      </dependency>
 
       <!-- javax Dependencies -->
       <dependency>
