@@ -126,8 +126,32 @@ under the License.
 
       <dependency>
         <groupId>io.kestros.cms</groupId>
-        <artifactId>kestros-cms-foundation</artifactId>
-        <version>0.1.1-SNAPSHOT</version>
+        <artifactId>kestros-filetypes</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.kestros.cms</groupId>
+        <artifactId>kestros-modeltypes</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.kestros.cms</groupId>
+        <artifactId>kestros-ui-frameworks-api</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.kestros.cms</groupId>
+        <artifactId>kestros-component-types-api</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.kestros.cms</groupId>
+        <artifactId>kestros-site-building-api</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
       </dependency>
 
       <!-- javax Dependencies -->
