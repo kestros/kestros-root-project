@@ -102,56 +102,56 @@ under the License.
       <dependency>
         <groupId>io.kestros.commons</groupId>
         <artifactId>kestros-osgi-service-utils</artifactId>
-        <version>0.1.2-SNAPSHOT</version>
+        <version>0.1.2</version>
       </dependency>
       
       <dependency>
         <groupId>io.kestros.commons</groupId>
         <artifactId>kestros-validation-foundation</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1</version>
       </dependency>
 
       <dependency>
         <groupId>io.kestros.commons</groupId>
         <artifactId>kestros-sling-ui-libraries</artifactId>
-        <version>0.2.0-SNAPSHOT</version>
+        <version>0.2.0</version>
       </dependency>
 
       <!-- Kestros CMS -->
       <dependency>
         <groupId>io.kestros.cms</groupId>
-        <artifactId>kestros-user-foundation</artifactId>
-        <version>0.1.2-SNAPSHOT</version>
+        <artifactId>kestros-modeltypes</artifactId>
+        <version>0.0.1</version>
       </dependency>
 
       <dependency>
         <groupId>io.kestros.cms</groupId>
         <artifactId>kestros-filetypes</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1</version>
       </dependency>
 
       <dependency>
         <groupId>io.kestros.cms</groupId>
-        <artifactId>kestros-modeltypes</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <artifactId>kestros-user-foundation</artifactId>
+        <version>0.2.0</version>
       </dependency>
-
+      
       <dependency>
         <groupId>io.kestros.cms</groupId>
         <artifactId>kestros-ui-frameworks-api</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1</version>
       </dependency>
 
       <dependency>
         <groupId>io.kestros.cms</groupId>
         <artifactId>kestros-component-types-api</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1</version>
       </dependency>
 
       <dependency>
         <groupId>io.kestros.cms</groupId>
         <artifactId>kestros-site-building-api</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1</version>
       </dependency>
 
       <!-- javax Dependencies -->
