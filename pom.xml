@@ -102,7 +102,7 @@ under the License.
       <dependency>
         <groupId>io.kestros.commons</groupId>
         <artifactId>kestros-osgi-service-utils</artifactId>
-        <version>0.1.2-SNAPSHOT</version>
+        <version>0.1.2</version>
       </dependency>
       
       <dependency>
