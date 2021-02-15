@@ -113,8 +113,8 @@ under the License.
 
       <dependency>
         <groupId>io.kestros.commons</groupId>
-        <artifactId>kestros-sling-ui-libraries</artifactId>
-        <version>0.2.0</version>
+        <artifactId>kestros-sling-ui-libraries-api</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
       </dependency>
 
       <!-- Kestros CMS -->
@@ -139,19 +139,19 @@ under the License.
       <dependency>
         <groupId>io.kestros.cms</groupId>
         <artifactId>kestros-ui-frameworks-api</artifactId>
-        <version>0.0.1</version>
+        <version>0.0.2-SNAPSHOT</version>
       </dependency>
 
       <dependency>
         <groupId>io.kestros.cms</groupId>
         <artifactId>kestros-component-types-api</artifactId>
-        <version>0.0.1</version>
+        <version>0.0.2-SNAPSHOT</version>
       </dependency>
 
       <dependency>
         <groupId>io.kestros.cms</groupId>
         <artifactId>kestros-site-building-api</artifactId>
-        <version>0.0.1</version>
+        <version>0.0.2-SNAPSHOT</version>
       </dependency>
 
       <!-- javax Dependencies -->
