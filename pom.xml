@@ -26,7 +26,7 @@ under the License.
   <groupId>io.kestros.commons</groupId>
   <artifactId>kestros-root-project</artifactId>
 
-  <version>0.1.2</version>
+  <version>0.2.0</version>
 
   <name>Kestros Root Project</name>
   <description>
@@ -91,7 +91,6 @@ under the License.
 
   <dependencyManagement>
     <dependencies>
-
       <!-- javax Dependencies -->
       <dependency>
         <groupId>javax.annotation</groupId>
@@ -481,7 +480,7 @@ under the License.
         <plugin>
           <groupId>org.apache.felix</groupId>
           <artifactId>maven-bundle-plugin</artifactId>
-          <version>4.1.0</version>
+          <version>5.1.1</version>
         </plugin>
 
         <!-- FileVault Content Package Plugin -->
