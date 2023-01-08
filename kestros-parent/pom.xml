@@ -30,7 +30,7 @@
     </parent>
 
     <artifactId>kestros-parent</artifactId>
-    <version>0.2.3</version>
+    <version>0.2.4-SNAPSHOT</version>
 
     <name>Kestros Parent</name>
     <description>Base Sling project build manager. Contains dependency and plugin versions for
@@ -43,12 +43,12 @@
             <dependency>
                 <groupId>io.kestros.commons</groupId>
                 <artifactId>kestros-structured-sling-models</artifactId>
-                <version>0.2.2</version>
+                <version>0.2.3-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>io.kestros.commons</groupId>
                 <artifactId>kestros-osgi-service-utils</artifactId>
-                <version>0.1.7</version>
+                <version>0.1.8-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>io.kestros.commons</groupId>
@@ -58,12 +58,12 @@
             <dependency>
                 <groupId>io.kestros.commons</groupId>
                 <artifactId>kestros-sling-ui-libraries-api</artifactId>
-                <version>0.0.3</version>
+                <version>0.0.4-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>io.kestros.commons</groupId>
                 <artifactId>kestros-sling-ui-libraries-base-compilers</artifactId>
-                <version>0.0.3</version>
+                <version>0.0.4-SNAPSHOT</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
