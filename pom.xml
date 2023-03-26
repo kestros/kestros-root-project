@@ -86,7 +86,6 @@ under the License.
   <modules>
     <module>kestros-build-tools</module>
     <module>kestros-parent</module>
-    <module>kestros-parent-strict</module>
   </modules>
 
   <dependencyManagement>
