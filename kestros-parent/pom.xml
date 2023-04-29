@@ -30,7 +30,7 @@
     </parent>
 
     <artifactId>kestros-parent</artifactId>
-    <version>0.3.0-SNAPSHOT</version>
+    <version>0.3.0</version>
 
     <name>Kestros Parent</name>
     <description>Base Sling project build manager. Contains dependency and plugin versions for
