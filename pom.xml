@@ -86,7 +86,6 @@ under the License.
   <modules>
     <module>kestros-build-tools</module>
     <module>kestros-parent</module>
-    <module>kestros-parent-strict</module>
   </modules>
 
   <dependencyManagement>
@@ -440,23 +439,7 @@ under the License.
           </executions>
         </plugin>
 
-        <!-- Maven Javadoc -->
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.1.1</version>
-          <configuration>
-            <source>8</source>
-          </configuration>
-          <executions>
-            <execution>
-              <id>attach-javadocs</id>
-              <goals>
-                <goal>jar</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
+
 
         <!-- Maven Source -->
         <plugin>
@@ -647,11 +630,6 @@ under the License.
             </configuration>
           </execution>
         </executions>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
       </plugin>
 
       <plugin>
