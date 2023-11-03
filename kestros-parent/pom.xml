@@ -45,7 +45,7 @@
                 <plugin>
                     <groupId>org.pitest</groupId>
                     <artifactId>pitest-maven</artifactId>
-                    <version>1.4.3</version>
+                    <version>1.15.2</version>
                 </plugin>
 
                 <plugin>
@@ -241,7 +241,7 @@
                     <plugin>
                         <groupId>org.pitest</groupId>
                         <artifactId>pitest-maven</artifactId>
-                        <version>1.4.3</version>
+                        <version>1.15.2</version>
                         <executions>
                             <execution>
                                 <goals>
@@ -287,7 +287,7 @@
                     <plugin>
                         <groupId>org.pitest</groupId>
                         <artifactId>pitest-maven</artifactId>
-                        <version>1.4.3</version>
+                        <version>1.15.2</version>
                         <executions>
                             <execution>
                                 <goals>
@@ -296,7 +296,7 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <mutationThreshold>60</mutationThreshold>
+                            <mutationThreshold>80</mutationThreshold>
                             <outputFormats>
                                 <outputFormat>XML</outputFormat>
                                 <outputFormat>HTML</outputFormat>
@@ -309,7 +309,7 @@
                                 <mutators>INCREMENTS</mutators>
                                 <mutators>INVERT_NEGS</mutators>
                                 <mutators>INLINE_CONSTS</mutators>
-                                <mutators>RETURN_VALS</mutators>
+<!--                                <mutators>RETURN_VALS</mutators>-->
                                 <mutators>VOID_METHOD_CALLS</mutators>
                                 <mutators>TRUE_RETURNS</mutators>
                                 <mutators>FALSE_RETURNS</mutators>
