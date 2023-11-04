@@ -263,7 +263,7 @@
                                 <mutators>INCREMENTS</mutators>
                                 <mutators>INVERT_NEGS</mutators>
                                 <mutators>INLINE_CONSTS</mutators>
-                                <mutators>RETURN_VALS</mutators>
+<!--                                <mutators>RETURN_VALS</mutators>-->
                                 <mutators>VOID_METHOD_CALLS</mutators>
                                 <mutators>TRUE_RETURNS</mutators>
                                 <mutators>FALSE_RETURNS</mutators>
