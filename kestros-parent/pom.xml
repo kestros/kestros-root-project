@@ -254,7 +254,9 @@
                                 <outputFormat>XML</outputFormat>
                                 <outputFormat>HTML</outputFormat>
                             </outputFormats>
-
+                            <features>
+                                <feature>+FLOGCALL</feature>
+                            </features>
                             <mutators>
                                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                                 <mutators>NEGATE_CONDITIONALS</mutators>
@@ -301,6 +303,9 @@
                                 <outputFormat>XML</outputFormat>
                                 <outputFormat>HTML</outputFormat>
                             </outputFormats>
+                            <features>
+                                <feature>+FLOGCALL</feature>
+                            </features>
                             <mutators>
                                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                                 <mutators>NEGATE_CONDITIONALS</mutators>
