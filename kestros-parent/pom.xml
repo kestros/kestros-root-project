@@ -31,7 +31,7 @@
 
     <groupId>io.kestros.commons</groupId>
     <artifactId>kestros-parent</artifactId>
-    <version>0.3.2-SNAPSHOT</version>
+    <version>0.3.3</version>
 
     <name>Kestros Parent</name>
     <description>Base Sling project build manager. Contains dependency and plugin versions for
