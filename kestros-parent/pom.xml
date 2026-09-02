@@ -218,10 +218,19 @@
                                                 <resourcecontains
                                                         resource="${project.build.directory}/spotbugsXml.xml"
                                                         substring="&lt;Errors "/>
+                                                <!-- SpotBugs writes this file with single-quoted
+                                                     attributes; both spellings are checked so a
+                                                     later writer change cannot make this pass
+                                                     silently. -->
                                                 <not>
-                                                    <resourcecontains
-                                                            resource="${project.build.directory}/spotbugsXml.xml"
-                                                            substring="errors=&quot;0&quot;"/>
+                                                    <or>
+                                                        <resourcecontains
+                                                                resource="${project.build.directory}/spotbugsXml.xml"
+                                                                substring="errors='0'"/>
+                                                        <resourcecontains
+                                                                resource="${project.build.directory}/spotbugsXml.xml"
+                                                                substring="errors=&quot;0&quot;"/>
+                                                    </or>
                                                 </not>
                                             </and>
                                         </condition>
