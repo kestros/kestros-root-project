@@ -31,7 +31,7 @@
 
     <groupId>io.kestros.commons</groupId>
     <artifactId>kestros-parent</artifactId>
-    <version>0.3.3</version>
+    <version>0.3.4</version>
 
     <name>Kestros Parent</name>
     <description>Base Sling project build manager. Contains dependency and plugin versions for
@@ -102,7 +102,7 @@
                             <plugin>
                                 <groupId>com.mebigfatguy.fb-contrib</groupId>
                                 <artifactId>fb-contrib</artifactId>
-                                <version>7.6.4</version>
+                                <version>7.6.14</version>
                             </plugin>
                             <plugin>
                                 <groupId>io.kestros.commons</groupId>
@@ -192,6 +192,45 @@
                     <plugin>
                         <groupId>com.github.spotbugs</groupId>
                         <artifactId>spotbugs-maven-plugin</artifactId>
+                    </plugin>
+                    <!-- SpotBugs prints a detector crash, carries on, and still exits 0 with
+                         "BugInstance size is 0". The crash count is recorded in spotbugsXml.xml
+                         as the errors attribute of <Errors>, and nothing read it. This fails the
+                         build when that count is not zero. Declared after spotbugs-maven-plugin
+                         so it runs after check in the same phase. -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>3.1.0</version>
+                        <executions>
+                            <execution>
+                                <id>spotbugs-detector-crash-check</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <target>
+                                        <condition property="kestros.spotbugs.detectorCrash">
+                                            <and>
+                                                <available
+                                                        file="${project.build.directory}/spotbugsXml.xml"/>
+                                                <resourcecontains
+                                                        resource="${project.build.directory}/spotbugsXml.xml"
+                                                        substring="&lt;Errors "/>
+                                                <not>
+                                                    <resourcecontains
+                                                            resource="${project.build.directory}/spotbugsXml.xml"
+                                                            substring="errors=&quot;0&quot;"/>
+                                                </not>
+                                            </and>
+                                        </condition>
+                                        <fail if="kestros.spotbugs.detectorCrash"
+                                              message="SpotBugs analysis errors: a detector crashed, so the bug count below is for a smaller detector set than it appears to be. Read the Errors element of ${project.build.directory}/spotbugsXml.xml and fix the cause. Do not suppress this."/>
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
                     </plugin>
                     <plugin>
                         <groupId>org.apache.rat</groupId>
