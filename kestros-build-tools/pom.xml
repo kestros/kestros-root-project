@@ -36,4 +36,23 @@
   <name>Kestros Build Tools</name>
   <description>Kestros build tool configurations.</description>
 
+  <build>
+    <plugins>
+      <plugin>
+        <!--
+          The licence fixtures are deliberately wrong-licensed sample files, and one of
+          them deliberately has no header at all. RAT would fail on them the moment it
+          runs over this module.
+        -->
+        <groupId>org.apache.rat</groupId>
+        <artifactId>apache-rat-plugin</artifactId>
+        <configuration>
+          <excludes>
+            <exclude>src/test/resources/licence-fixtures/**</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
 </project>
