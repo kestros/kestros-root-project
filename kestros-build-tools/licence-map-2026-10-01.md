@@ -154,7 +154,7 @@
 | kestros-misc-components | . | io.kestros.cms.components.misc | GPL | GPL | 0 | 0 | correct |
 | kestros-modeltypes | . | io.kestros.cms.modeltypes | GPL | GPL | 0 | 0 | correct |
 | kestros-notification-foundation | . | io.kestros.commons | APACHE | none | 0 | 13 | correct |
-| kestros-oak-document-store | . | org.apache.jackrabbit.oak.plugins.document | GPL | ASF | 244 | 49 | needs work |
+| kestros-oak-document-store | . | org.apache.jackrabbit.oak.plugins.document | GPL | ASF | 244 | 49 | vendored, not Kestros code |
 | kestros-osgi-service-utils | . | io.kestros.commons.osgiserviceutils | APACHE | ASF | 16 | 0 | needs work |
 | kestros-performance-services-api | . | io.kestros.cms.performanceservices.api | GPL | GPL | 0 | 0 | correct |
 | kestros-platform-info-api | . | io.kestros.cms.platforminfo.api | GPL | none | 0 | 10 | correct |
@@ -290,24 +290,11 @@
 | kestros-workflow-reactor | workflow-management/api | io.kestros.cms.workflowmanagement.api | GPL | none | 0 | 24 | correct |
 | kestros-workflow-reactor | workflow-management/core | io.kestros.cms.workflowmanagement.core | GPL | none | 0 | 7 | correct |
 | kestros-zip-management-core | . | io.kestros.cms.assetmanagement.zip.core | GPL | none | 0 | 10 | correct |
-| effisim-app-poc | - | - | - | - | 0 | 0 | no Java sources |
-| hosted-instance-management | - | - | - | - | 0 | 0 | no Java sources |
 | kes-sample-frameworks | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-accounts-api | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-archetypes | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-asset-management | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-asset-management-api | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-asset-management-core | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-assets-administration | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-assets-api | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-assets-core | - | - | - | - | 0 | 0 | no Java sources |
 | kestros-assets-reactor | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-basic-components | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-basic-components-legacy | - | - | - | - | 0 | 0 | no Java sources |
 | kestros-blogs | - | - | - | - | 0 | 0 | no Java sources |
 | kestros-build-helper-legacy | - | - | - | - | 0 | 0 | no Java sources |
 | kestros-build-helper-private | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-cache-management-foundation | - | - | - | - | 0 | 0 | no Java sources |
 | kestros-callback-services-reactor | - | - | - | - | 0 | 0 | no Java sources |
 | kestros-claude | - | - | - | - | 0 | 0 | no Java sources |
 | kestros-claude-instance-manager | - | - | - | - | 0 | 0 | no Java sources |
@@ -315,87 +302,29 @@
 | kestros-cms-foundation-apis | - | - | - | - | 0 | 0 | no Java sources |
 | kestros-cms-foundation-project | - | - | - | - | 0 | 0 | no Java sources |
 | kestros-cms-foundation-reactor | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-commerce-foundation | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-commerce-jecis | - | - | - | - | 0 | 0 | no Java sources |
 | kestros-commons-builder-helper | - | - | - | - | 0 | 0 | no Java sources |
 | kestros-commons-projects | - | - | - | - | 0 | 0 | no Java sources |
 | kestros-commons-reactor | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-common-utils | - | - | - | - | 0 | 0 | no Java sources |
 | kestros-community-hub | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-component-management | - | - | - | - | 0 | 0 | no Java sources |
 | kestros-component-reactor | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-component-types-api | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-component-types-core | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-content-objects | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-content-publication-foundation | - | - | - | - | 0 | 0 | no Java sources |
 | kestros-demo | - | - | - | - | 0 | 0 | no Java sources |
 | kestros-demo-config | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-design-framework | - | - | - | - | 0 | 0 | no Java sources |
 | kestros-design-framework-static | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-design-mocker | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-development-management | - | - | - | - | 0 | 0 | no Java sources |
 | kestros-devops | - | - | - | - | 0 | 0 | no Java sources |
 | kestros-dialog-fields | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-dialog-management-foundation | - | - | - | - | 0 | 0 | no Java sources |
 | kestros-dynamodb-segmentstore | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-email-reactor | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-explore-sample-site | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-filetypes | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-filtering | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-filtering-api | - | - | - | - | 0 | 0 | no Java sources |
 | kestros-filtering-reactor | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-forms-foundation | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-forms-foundation-legacy | - | - | - | - | 0 | 0 | no Java sources |
 | kestros-frontend-tests | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-graph-ql | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-guides-core | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-health-checking | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-image-management-core | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-images-api | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-internal-automated-reports | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-io-site | - | - | - | - | 0 | 0 | no Java sources |
 | kestros-io-static-site | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-jira | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-login | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-managed-versioning-api | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-managed-versions-core | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-misc-components | - | - | - | - | 0 | 0 | no Java sources |
 | kestros-misc-reactor | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-modeltypes | - | - | - | - | 0 | 0 | no Java sources |
 | kestros-new-site-startup | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-notification-foundation | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-oak-document-store | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-osgi-service-utils | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-performance-services-api | - | - | - | - | 0 | 0 | no Java sources |
 | kestros-platform-core | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-platform-info-api | - | - | - | - | 0 | 0 | no Java sources |
 | kestros-platform-update | - | - | - | - | 0 | 0 | no Java sources |
 | kestros-poms-reactor | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-proxy | - | - | - | - | 0 | 0 | no Java sources |
 | kestros-reactor | - | - | - | - | 0 | 0 | no Java sources |
 | kestros-root-project | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-sample-sites | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-sample-sites-legacy | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-service-management | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-site-administration | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-site-administration-legacy | - | - | - | - | 0 | 0 | no Java sources |
 | kestros-site-administration-reactor | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-site-admin-notifications | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-sitebuilding-api | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-sitebuilding-core | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-site-management-core | - | - | - | - | 0 | 0 | no Java sources |
 | kestros-site-project | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-site-starters | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-sling-ui-libraries | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-sling-ui-libraries-api | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-sling-ui-libraries-base-compilers | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-spotbugs-plugins | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-structured-assets-core | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-structured-images | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-structured-sling-models | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-system-settings | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-system-topology | - | - | - | - | 0 | 0 | no Java sources |
-| kestros-system-topology-node-api | - | - | - | - | 0 | 0 | no Java sources |
 | kestros-system-topology-reactor | - | - | - | - | 0 | 0 | no Java sources |
 | kestros-test | - | - | - | - | 0 | 0 | no Java sources |
 | kestros-ui-frameworks | - | - | - | - | 0 | 0 | no Java sources |

@@ -175,16 +175,40 @@ map_clones() {
     wrong="$(awk -F'\t' -v r="$r" -v m="$m" '$1 == r && $2 == m && $4 != "NONE" && $4 != $5' "$rows" | wc -l)"
     none="$(awk -F'\t' -v r="$r" -v m="$m" '$1 == r && $2 == m && $4 == "NONE"' "$rows" | wc -l)"
     printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' "$r" "$m" "$root_pkg" "$exp" "${found:-none}" \
-      "$wrong" "$none" "$([[ "$wrong" -eq 0 ]] && echo correct || echo 'needs work')"
+      "$wrong" "$none" "$(module_verdict "$root_pkg" "$wrong")"
   done < <(cut -f1,2 "$rows" | sort -u)
 
   local dir
   for dir in "$root"/*/; do
     dir="$(basename "$dir")"
-    cut -f1 "$rows" | grep -qxF "$dir" ||
+    repo_has_java "$rows" "$dir" ||
       printf '%s\t-\t-\t-\t-\t0\t0\tno Java sources\n' "$dir"
   done
   rm -f "$rows"
+}
+
+# Exit 0 if the rows file holds a row for the repo.
+#
+# No pipe on purpose. `cut | grep -q` under pipefail reports a miss whenever grep matches
+# and exits while cut is still writing: cut takes SIGPIPE and the pipeline fails. That is
+# how 71 repos with Java were mapped as "no Java sources" on 2026-10-01.
+repo_has_java() {
+  awk -F'\t' -v r="$2" '$1 == r { found = 1; exit } END { exit !found }' "$1"
+}
+
+# Prints a module's verdict from its package root and its wrong-licence count.
+#
+# Code under org.apache is vendored Apache code, not a Kestros module, so the Kestros rule
+# does not apply to it and its ASF headers must stay.
+module_verdict() {
+  local pkg="$1" wrong="$2"
+  if [[ "$pkg" == org.apache.* ]]; then
+    echo 'vendored, not Kestros code'
+  elif [[ "$wrong" -eq 0 ]]; then
+    echo correct
+  else
+    echo 'needs work'
+  fi
 }
 
 # --- self-test ---------------------------------------------------------------------
@@ -254,6 +278,25 @@ self_test() {
   run_scan "$clean" flat >/dev/null
   assert_equals "exit 0 when only a missing header is present" "0" "$?"
   rm -rf "$clean"
+
+  # A repo found on the first row of a rows file far larger than a pipe buffer must still
+  # be found. This is the shape that made kestros-io-site read as "no Java sources".
+  local rows
+  rows="$(mktemp)"
+  {
+    printf 'repo-a\t.\n'
+    awk 'BEGIN { for (i = 0; i < 200000; i++) printf "repo-b\tmodule\n" }'
+  } >"$rows"
+  repo_has_java "$rows" repo-a
+  assert_equals "a repo on the first row of a large map is found" "0" "$?"
+  repo_has_java "$rows" repo-c
+  assert_equals "a repo with no rows is not found" "1" "$?"
+  rm -f "$rows"
+
+  assert_equals "org.apache package root is vendored, not needs work" \
+    "vendored, not Kestros code" "$(module_verdict org.apache.jackrabbit.oak.plugins.document 244)"
+  assert_equals "a Kestros module with wrong files needs work" \
+    "needs work" "$(module_verdict io.kestros.cms.foo 3)"
 
   echo
   if [[ "$SELF_TEST_FAILURES" -eq 0 ]]; then
