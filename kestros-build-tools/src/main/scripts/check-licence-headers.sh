@@ -57,7 +57,7 @@ classify_header() {
 # Prints the licence class a file's own package declaration calls for: APACHE or GPL.
 expected_licence() {
   local file="$1"
-  if grep -qE '^package[[:space:]]+io\.kestros\.commons\.' "$file"; then
+  if grep -qE '^package[[:space:]]+io\.kestros\.commons([.;]|[[:space:]])' "$file"; then
     echo APACHE
   else
     echo GPL
@@ -134,6 +134,57 @@ run_scan() {
   if [[ -s "$wrong" ]]; then rc=1; else rc=0; fi
   rm -f "$wrong" "$none"
   return "$rc"
+}
+
+# --- map ---------------------------------------------------------------------------
+#
+# One row per Maven module holding src/main Java sources, and one row per repository with
+# none, so no repository is silently absent. Columns: repo, module, package root, expected
+# licence, licence found, wrong-licence count, no-header count, verdict. A module is
+# "needs work" only when a file carries the wrong licence; missing headers are counted
+# but never change the verdict.
+
+# Prints the longest dot-segment prefix shared by the package names on stdin.
+common_package() {
+  awk -F. '
+    NR == 1 { n = NF; for (i = 1; i <= NF; i++) p[i] = $i; next }
+    { m = (NF < n ? NF : n); for (i = 1; i <= m; i++) if ($i != p[i]) break; n = i - 1 }
+    END { s = ""; for (i = 1; i <= n; i++) s = s (i > 1 ? "." : "") p[i]; print (s == "" ? "-" : s) }'
+}
+
+map_clones() {
+  local root="${1%/}" rows file rel repo module pkg actual expected
+  rows="$(mktemp)"
+  while IFS= read -r file; do
+    rel="${file#"$root"/}"
+    repo="${rel%%/*}"
+    module="${rel#"$repo"/}"
+    if [[ "$module" == src/main/* ]]; then module="."; else module="${module%%/src/main/*}"; fi
+    pkg="$(grep -m1 -E '^package[[:space:]]' "$file" | sed -E 's/^package[[:space:]]+([^;[:space:]]+).*/\1/')"
+    actual="$(classify_header "$file")"
+    expected="$(expected_licence "$file")"
+    printf '%s\t%s\t%s\t%s\t%s\n' "$repo" "$module" "${pkg:--}" "$actual" "$expected" >>"$rows"
+  done < <(list_files "$root" clones)
+
+  printf 'repo\tmodule\tpackage-root\texpected\tfound\twrong\tno-header\tverdict\n'
+  local key r m root_pkg exp found wrong none
+  while IFS=$'\t' read -r r m; do
+    root_pkg="$(awk -F'\t' -v r="$r" -v m="$m" '$1 == r && $2 == m { print $3 }' "$rows" | common_package)"
+    exp="$(awk -F'\t' -v r="$r" -v m="$m" '$1 == r && $2 == m { print $5 }' "$rows" | sort -u | paste -sd+)"
+    found="$(awk -F'\t' -v r="$r" -v m="$m" '$1 == r && $2 == m && $4 != "NONE" { print $4 }' "$rows" | sort -u | paste -sd+)"
+    wrong="$(awk -F'\t' -v r="$r" -v m="$m" '$1 == r && $2 == m && $4 != "NONE" && $4 != $5' "$rows" | wc -l)"
+    none="$(awk -F'\t' -v r="$r" -v m="$m" '$1 == r && $2 == m && $4 == "NONE"' "$rows" | wc -l)"
+    printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' "$r" "$m" "$root_pkg" "$exp" "${found:-none}" \
+      "$wrong" "$none" "$([[ "$wrong" -eq 0 ]] && echo correct || echo 'needs work')"
+  done < <(cut -f1,2 "$rows" | sort -u)
+
+  local dir
+  for dir in "$root"/*/; do
+    dir="$(basename "$dir")"
+    cut -f1 "$rows" | grep -qxF "$dir" ||
+      printf '%s\t-\t-\t-\t-\t0\t0\tno Java sources\n' "$dir"
+  done
+  rm -f "$rows"
 }
 
 # --- self-test ---------------------------------------------------------------------
@@ -227,6 +278,13 @@ main() {
       ;;
     -h | --help)
       usage
+      ;;
+    --map)
+      if [[ $# -lt 2 || ! -d "$2" ]]; then
+        echo "--map needs a directory of clones" >&2
+        return 2
+      fi
+      map_clones "$2"
       ;;
     *)
       if [[ ! -d "$1" ]]; then
